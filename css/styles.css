@@ -6,16 +6,23 @@
 }
 
 :root {
-    --primary-color: #4A9EFF;
-    --secondary-color: #2E75B6;
-    --accent-color: #64B5F6;
-    --dark-bg: #0A1628;
-    --darker-bg: #060D1A;
-    --card-bg: #0F1B2E;
-    --text-white: #E8EEF7;
-    --text-gray: #B0BEC5;
-    --shadow: 0 4px 20px rgba(0,0,0,0.3);
-    --shadow-lg: 0 8px 30px rgba(0,0,0,0.4);
+    /* MIXED PALETTE: Champagne/Sage + Blue accents */
+    --primary-color: #D4A574;        /* Champagne Gold - main feminine */
+    --secondary-color: #B8956A;      /* Deep Gold */
+    --accent-color: #9CAF88;         /* Sage Green */
+    --accent-light: #C5D4B8;         /* Light Sage */
+    --blue-primary: #4A9EFF;         /* Original Blue - for logo/accents */
+    --blue-secondary: #2E75B6;       /* Darker Blue */
+    --blue-accent: #64B5F6;          /* Light Blue */
+    --dark-bg: #0A1628;              /* Original dark blue-black */
+    --darker-bg: #060D1A;            /* Deeper dark */
+    --card-bg: #0F1B2E;              /* Original card bg */
+    --text-white: #E8EEF7;           /* Original cool white */
+    --text-cream: #E8E0D5;           /* Warm cream */
+    --text-gray: #B0BEC5;            /* Original gray */
+    --shadow: 0 4px 20px rgba(212, 165, 116, 0.15);
+    --shadow-lg: 0 8px 30px rgba(212, 165, 116, 0.2);
+    --shadow-blue: 0 4px 20px rgba(74, 158, 255, 0.2);
 }
 
 body {
@@ -24,10 +31,10 @@ body {
     color: var(--text-white);
     background: var(--dark-bg);
     overflow-x: hidden;
-    scroll-behavior: smooth;  /* Smooth scrolling */
+    scroll-behavior: smooth;
 }
 
-/* Add subtle animations to all interactive elements */
+/* Smooth transitions for all interactive elements */
 a, button, .btn {
     transition: all 0.3s ease;
 }
@@ -47,12 +54,12 @@ a, button, .btn {
 .navbar {
     background: rgba(10, 22, 40, 0.95);
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 20px rgba(74, 158, 255, 0.2);
     position: sticky;
     top: 0;
     z-index: 1000;
     padding: 15px 0;
-    border-bottom: 1px solid rgba(74, 158, 255, 0.1);
+    border-bottom: 1px solid rgba(74, 158, 255, 0.15);
 }
 
 .nav-container {
@@ -64,11 +71,11 @@ a, button, .btn {
     align-items: center;
 }
 
-/* UPDATED LOGO STYLING */
+/* LOGO STYLING - SOFTCODE WEB STUDIO STAYS BLUE */
 .logo {
     display: flex;
     align-items: center;
-    gap: 8px;  /* Reduced space between logo and text */
+    gap: 8px;
 }
 
 .logo img {
@@ -88,21 +95,25 @@ a, button, .btn {
     line-height: 1;
 }
 
+/* SOFTCODE - BLUE (original tech feel) */
 .logo-main {
-    font-family: 'Orbitron', 'Rajdhani', 'Exo 2', 'Poppins', sans-serif;  /* Tech/modern font */
-    font-size: 26px;  /* Bigger than WEB STUDIO */
+    font-family: 'Orbitron', 'Rajdhani', 'Exo 2', 'Poppins', sans-serif;
+    font-size: 26px;
     font-weight: 800;
-    color: var(--primary-color);
+    color: var(--blue-primary);        /* BLUE - unchanged */
     letter-spacing: 1px;
+    text-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
 }
 
+/* WEB STUDIO - SAGE GREEN (feminine touch) */
 .logo-sub {
     font-family: 'Poppins', sans-serif;
-    font-size: 10px;  /* Much smaller than Softcode */
+    font-size: 10px;
     font-weight: 400;
-    color: #8AB4F8;
+    color: var(--accent-color);          /* SAGE GREEN */
     letter-spacing: 3px;
     margin-top: 2px;
+    text-transform: uppercase;
 }
 
 .nav-menu {
@@ -118,25 +129,45 @@ a, button, .btn {
     font-weight: 500;
     transition: color 0.3s;
     padding: 8px 0;
+    position: relative;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue-primary), var(--primary-color));
+    transition: width 0.3s ease;
 }
 
 .nav-menu a:hover,
 .nav-menu a.active {
-    color: var(--primary-color);
+    color: var(--blue-primary);
 }
 
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+    width: 100%;
+}
+
+/* NAV CTA - MIXED: Gold with blue glow */
 .nav-cta {
-    background: linear-gradient(135deg, #4A9EFF 0%, #2E75B6 100%);
-    color: white !important;
+    background: linear-gradient(135deg, #D4A574 0%, #B8956A 100%);
+    color: var(--dark-bg) !important;
     padding: 10px 25px !important;
-    border-radius: 5px;
+    border-radius: 25px;
     transition: all 0.3s;
     box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+    font-weight: 600;
 }
 
 .nav-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
+    box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4), 0 4px 15px rgba(212, 165, 116, 0.3);
+    background: linear-gradient(135deg, #E8C088 0%, #D4A574 100%);
 }
 
 /* Hamburger Menu (Mobile) */
@@ -150,18 +181,21 @@ a, button, .btn {
 .hamburger span {
     width: 25px;
     height: 3px;
-    background: var(--primary-color);
+    background: var(--blue-primary);
     transition: 0.3s;
 }
 
-/* ===== HERO SECTION ===== */
+/* ===== HERO SECTION WITH BACKGROUND IMAGE ===== */
 .hero {
-    background: linear-gradient(135deg, #0A1628 0%, #1a2f4f 50%, #0A1628 100%);
+    background: 
+        linear-gradient(135deg, rgba(10, 22, 40, 0.85) 0%, rgba(26, 24, 22, 0.8) 50%, rgba(10, 22, 40, 0.85) 100%),
+        url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1920&q=80') center/cover no-repeat;
     color: var(--text-white);
     padding: 120px 20px 80px;
     text-align: center;
     position: relative;
     overflow: hidden;
+    min-height: 600px;
 }
 
 .hero::before {
@@ -172,9 +206,9 @@ a, button, .btn {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(2px 2px at 20% 30%, white, transparent),
-        radial-gradient(2px 2px at 60% 70%, white, transparent),
-        radial-gradient(1px 1px at 50% 50%, white, transparent);
+        radial-gradient(2px 2px at 20% 30%, rgba(189, 124, 55, 0.6), transparent),
+        radial-gradient(2px 2px at 60% 70%, rgba(33, 102, 182, 0.4), transparent),
+        radial-gradient(1px 1px at 50% 50%, rgba(156, 175, 136, 0.4), transparent);
     background-size: 200px 200px;
     animation: stars 20s linear infinite;
     opacity: 0.3;
@@ -192,21 +226,26 @@ a, button, .btn {
     z-index: 1;
 }
 
+/* HERO TITLE - MIXED GRADIENT: Blue to Gold to Sage */
 .hero-title {
     font-size: 56px;
     margin-bottom: 20px;
     font-weight: 700;
     line-height: 1.2;
-    background: linear-gradient(135deg, #ffffff 0%, #4A9EFF 100%);
+    background: linear-gradient(135deg, #4A9EFF 0%, #D4A574 50%, #9CAF88 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    text-shadow: 0 0 40px rgba(74, 158, 255, 0.2);
 }
 
 .hero-subtitle {
     font-size: 24px;
     margin-bottom: 15px;
-    color: var(--text-gray);
+    color: var(--primary-color);           /* Champagne Gold */
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 .hero-description {
@@ -235,7 +274,8 @@ a, button, .btn {
 .stat h3 {
     font-size: 42px;
     margin-bottom: 5px;
-    color: var(--primary-color);
+    color: var(--blue-primary);          /* BLUE for stats */
+    font-family: 'Orbitron', sans-serif;
 }
 
 .stat p {
@@ -248,33 +288,38 @@ a, button, .btn {
     display: inline-block;
     padding: 14px 32px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 25px;
     font-weight: 600;
     transition: all 0.3s;
     border: 2px solid transparent;
 }
 
+/* PRIMARY - Champagne Gold with blue shadow */
 .btn-primary {
-    background: linear-gradient(135deg, #4A9EFF 0%, #2E75B6 100%);
-    color: white;
+    background: linear-gradient(135deg, #D4A574 0%, #B8956A 100%);
+    color: var(--dark-bg);
     box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
+    box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4), 0 4px 15px rgba(212, 165, 116, 0.4);
+    background: linear-gradient(135deg, #E8C088 0%, #D4A574 100%);
 }
 
+/* SECONDARY - Blue outline */
 .btn-secondary {
     background: transparent;
-    color: var(--primary-color);
-    border-color: var(--primary-color);
+    color: var(--blue-primary);
+    border-color: var(--blue-primary);
 }
 
 .btn-secondary:hover {
     background: rgba(74, 158, 255, 0.1);
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.2);
 }
 
+/* OUTLINE - Gold */
 .btn-outline {
     background: transparent;
     color: var(--primary-color);
@@ -282,8 +327,8 @@ a, button, .btn {
 }
 
 .btn-outline:hover {
-    background: linear-gradient(135deg, #4A9EFF 0%, #2E75B6 100%);
-    color: white;
+    background: linear-gradient(135deg, #D4A574 0%, #B8956A 100%);
+    color: var(--dark-bg);
 }
 
 /* ===== SECTION HEADERS ===== */
@@ -296,6 +341,19 @@ a, button, .btn {
     font-size: 42px;
     color: var(--text-white);
     margin-bottom: 15px;
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    font-weight: 600;
+}
+
+/* Underline gradient: Blue to Gold */
+.section-header h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-primary), var(--primary-color));
+    margin: 15px auto 0;
+    border-radius: 2px;
 }
 
 .section-header p {
@@ -318,28 +376,49 @@ a, button, .btn {
 .service-card {
     background: var(--card-bg);
     padding: 40px 30px;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
+    border-radius: 15px;
+    box-shadow: var(--shadow-blue);
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
     border: 1px solid rgba(74, 158, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Top border gradient: Blue to Gold */
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-primary), var(--primary-color), var(--accent-color));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
 }
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 30px rgba(74, 158, 255, 0.2);
-    border-color: rgba(74, 158, 255, 0.3);
+    box-shadow: 0 8px 30px rgba(74, 158, 255, 0.25), 0 8px 30px rgba(212, 165, 116, 0.15);
+    border-color: rgba(74, 158, 255, 0.2);
 }
 
 .service-icon {
     font-size: 60px;
     margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(212, 165, 116, 0.4));
 }
 
 .service-card h3 {
     font-size: 24px;
     margin-bottom: 15px;
-    color: var(--primary-color);
+    color: var(--primary-color);           /* Champagne Gold */
+    font-family: 'Orbitron', sans-serif;
 }
 
 .service-card p {
@@ -363,18 +442,19 @@ a, button, .btn {
 
 .pricing-card {
     background: var(--card-bg);
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 40px 30px;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-blue);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
     border: 1px solid rgba(74, 158, 255, 0.1);
 }
 
 .pricing-card.featured {
-    border: 2px solid var(--primary-color);
+    border: 2px solid var(--blue-primary);   /* BLUE border for featured */
     transform: scale(1.05);
-    box-shadow: 0 8px 30px rgba(74, 158, 255, 0.3);
+    box-shadow: 0 8px 30px rgba(74, 158, 255, 0.3), 0 8px 30px rgba(212, 165, 116, 0.2);
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(74, 158, 255, 0.05) 100%);
 }
 
 .featured-badge {
@@ -382,8 +462,8 @@ a, button, .btn {
     top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(135deg, #4A9EFF 0%, #2E75B6 100%);
-    color: white;
+    background: linear-gradient(135deg, #4A9EFF 0%, #D4A574 100%);  /* Blue to Gold */
+    color: var(--dark-bg);
     padding: 5px 20px;
     border-radius: 20px;
     font-size: 14px;
@@ -392,7 +472,7 @@ a, button, .btn {
 
 .pricing-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 30px rgba(74, 158, 255, 0.2);
+    box-shadow: 0 8px 30px rgba(74, 158, 255, 0.25), 0 8px 30px rgba(212, 165, 116, 0.15);
 }
 
 .pricing-card.featured:hover {
@@ -406,8 +486,9 @@ a, button, .btn {
 
 .pricing-header h3 {
     font-size: 28px;
-    color: var(--primary-color);
+    color: var(--blue-primary);          /* BLUE for pricing titles */
     margin-bottom: 5px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .pages {
@@ -429,7 +510,8 @@ a, button, .btn {
 .amount {
     font-size: 48px;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--primary-color);         /* Champagne Gold for price */
+    font-family: 'Orbitron', sans-serif;
 }
 
 .period {
@@ -471,17 +553,28 @@ a, button, .btn {
 
 .feature-item {
     text-align: center;
+    padding: 30px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    background: rgba(74, 158, 255, 0.05);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(74, 158, 255, 0.1);
 }
 
 .feature-icon {
     font-size: 50px;
     margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(156, 175, 136, 0.4));
 }
 
 .feature-item h3 {
     font-size: 22px;
     margin-bottom: 15px;
-    color: var(--primary-color);
+    color: var(--primary-color);           /* Champagne Gold */
+    font-family: 'Orbitron', sans-serif;
 }
 
 .feature-item p {
@@ -491,7 +584,9 @@ a, button, .btn {
 
 /* ===== CTA SECTION ===== */
 .cta {
-    background: linear-gradient(135deg, #0A1628 0%, #1a2f4f 50%, #0A1628 100%);
+    background: 
+        linear-gradient(135deg, rgba(10, 22, 40, 0.9) 0%, rgba(26, 24, 22, 0.85) 50%, rgba(10, 22, 40, 0.9) 100%),
+        url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80') center/cover no-repeat;
     color: var(--text-white);
     padding: 80px 20px;
     text-align: center;
@@ -507,11 +602,11 @@ a, button, .btn {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(2px 2px at 20% 30%, white, transparent),
-        radial-gradient(2px 2px at 60% 70%, white, transparent);
+        radial-gradient(2px 2px at 20% 30%, rgba(74, 158, 255, 0.4), transparent),
+        radial-gradient(2px 2px at 60% 70%, rgba(212, 165, 116, 0.3), transparent);
     background-size: 200px 200px;
     animation: stars 20s linear infinite;
-    opacity: 0.2;
+    opacity: 0.4;
 }
 
 .cta h2 {
@@ -519,6 +614,12 @@ a, button, .btn {
     margin-bottom: 20px;
     position: relative;
     z-index: 1;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    background: linear-gradient(135deg, #4A9EFF 0%, #D4A574 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .cta p {
@@ -552,7 +653,7 @@ a, button, .btn {
     margin-bottom: 40px;
 }
 
-/* UPDATED FOOTER LOGO STYLING (same as navbar) */
+/* FOOTER LOGO - SAME AS NAVBAR: Blue + Sage */
 .footer-logo {
     display: flex;
     align-items: center;
@@ -566,12 +667,24 @@ a, button, .btn {
     filter: drop-shadow(0 0 10px rgba(74, 158, 255, 0.5));
 }
 
-.footer-logo span {
-    font-family: 'Orbitron', 'Rajdhani', 'Exo 2', 'Poppins', sans-serif;
+/* SOFTCODE - BLUE */
+.footer-logo .logo-text-footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo .logo-main {
+    font-family: 'Orbitron', sans-serif;
     font-size: 22px;
     font-weight: 800;
-    color: var(--primary-color);
+    color: var(--blue-primary);          /* BLUE */
     letter-spacing: 1px;
+}
+
+.footer-logo .logo-sub {
+    font-size: 9px;
+    color: var(--accent-color);            /* SAGE */
+    letter-spacing: 2px;
 }
 
 .footer-section p {
@@ -588,16 +701,21 @@ a, button, .btn {
 .social-links a {
     text-decoration: none;
     transition: transform 0.3s;
+    color: var(--blue-primary);            /* BLUE social icons */
 }
 
 .social-links a:hover {
     transform: scale(1.2);
+    color: var(--primary-color);           /* Gold on hover */
 }
 
 .footer-section h4 {
     color: var(--text-white);
     margin-bottom: 20px;
     font-size: 18px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    color: var(--primary-color);             /* Champagne Gold headers */
 }
 
 .footer-section ul {
@@ -615,7 +733,7 @@ a, button, .btn {
 }
 
 .footer-section a:hover {
-    color: var(--primary-color);
+    color: var(--blue-primary);            /* Blue on hover */
 }
 
 .contact-info li {
@@ -637,7 +755,6 @@ a, button, .btn {
         display: flex;
     }
 
-    /* Animated hamburger menu */
     .hamburger.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
@@ -659,7 +776,7 @@ a, button, .btn {
         width: 100%;
         text-align: center;
         transition: 0.3s;
-        box-shadow: var(--shadow);
+        box-shadow: var(--shadow-blue);
         padding: 20px 0;
         border-top: 1px solid rgba(74, 158, 255, 0.1);
     }
@@ -668,7 +785,6 @@ a, button, .btn {
         left: 0;
     }
 
-    /* Stagger animation for menu items */
     .nav-menu.active li {
         animation: slideIn 0.5s ease forwards;
         opacity: 0;
@@ -691,7 +807,6 @@ a, button, .btn {
         }
     }
 
-    /* Mobile hero animations */
     .hero-title {
         font-size: 36px;
         animation: fadeInUp 0.8s ease;
@@ -748,7 +863,6 @@ a, button, .btn {
         gap: 30px;
     }
 
-    /* Animate stats on scroll */
     .stat {
         animation: popIn 0.6s ease;
     }
@@ -768,7 +882,6 @@ a, button, .btn {
         }
     }
 
-    /* Service cards animation on mobile */
     .service-card {
         animation: fadeInScale 0.6s ease;
         animation-fill-mode: backwards;
@@ -792,7 +905,6 @@ a, button, .btn {
         }
     }
 
-    /* Enhanced card hover on mobile (tap) */
     .service-card:active {
         transform: translateY(-5px) scale(0.98);
     }
@@ -815,7 +927,6 @@ a, button, .btn {
         transform: scale(1);
     }
 
-    /* Pricing cards slide in animation */
     .pricing-card {
         animation: slideInBottom 0.6s ease;
         animation-fill-mode: backwards;
@@ -842,7 +953,6 @@ a, button, .btn {
         align-items: center;
     }
 
-    /* CTA button pulse animation */
     .cta-buttons .btn-primary {
         animation: pulse 2s infinite;
     }
@@ -874,6 +984,8 @@ a, button, .btn {
         font-size: 14px;
     }
 }
+
+/* ===== PRELOADER ===== */
 #preloader {
     position: fixed;
     top: 0;
@@ -913,7 +1025,7 @@ a, button, .btn {
     display: inline-block;
     width: 8px;
     height: 8px;
-    background: var(--primary-color);
+    background: var(--blue-primary);
     border-radius: 50%;
     margin: 0 2px;
     animation: bounce 1.4s ease-in-out infinite both;
@@ -927,7 +1039,8 @@ a, button, .btn {
     0%, 80%, 100% { transform: scale(0); }
     40% { transform: scale(1); }
 }
-/* WhatsApp Floating Button */
+
+/* ===== WHATSAPP FLOATING BUTTON ===== */
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
@@ -978,7 +1091,7 @@ a, button, .btn {
     visibility: hidden;
     transition: all 0.3s ease;
     z-index: 9998;
-    border: 1px solid rgba(37, 211, 102, 0.3);
+    border: 1px solid rgba(74, 158, 255, 0.3);
 }
 
 .whatsapp-tooltip::after {
@@ -1005,174 +1118,21 @@ a, button, .btn {
         bottom: 20px;
         right: 20px;
     }
-    
+
     .whatsapp-tooltip {
         right: 20px;
         font-size: 12px;
     }
 }
-/* Portfolio Cards with Images */
-.portfolio-card {
-    padding: 0;
-    overflow: hidden;
-    text-align: left;
-}
 
-.portfolio-image {
-    position: relative;
-    height: 220px;
-    overflow: hidden;
-    background: var(--darker-bg);
-}
-
-.portfolio-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.portfolio-card:hover .portfolio-image img {
-    transform: scale(1.1);
-}
-
-.portfolio-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(10, 22, 40, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.portfolio-card:hover .portfolio-overlay {
-    opacity: 1;
-}
-
-.portfolio-overlay .btn {
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-}
-
-.portfolio-card:hover .portfolio-overlay .btn {
-    transform: translateY(0);
-}
-
-.portfolio-content {
-    padding: 30px;
-}
-
-.portfolio-category {
-    display: inline-block;
-    background: rgba(74, 158, 255, 0.2);
-    color: var(--primary-color);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-}
-
-.portfolio-content h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
-    color: var(--text-white);
-}
-
-.portfolio-content p {
-    color: var(--text-gray);
-    font-size: 15px;
-    line-height: 1.7;
-    margin-bottom: 20px;
-}
-
-.portfolio-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.portfolio-tags span {
-    background: rgba(74, 158, 255, 0.1);
-    padding: 5px 12px;
-    border-radius: 5px;
-    font-size: 12px;
-    color: var(--text-gray);
-    border: 1px solid rgba(74, 158, 255, 0.2);
-}
-
-/* Placeholder for missing images */
-.portfolio-image::before {
-    content: '🖼️';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 48px;
-    opacity: 0.3;
-}
-
-.portfolio-image img {
-    position: relative;
-    z-index: 1;
-}
-.portfolio-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(10, 22, 40, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 10; /* Add this */
-    pointer-events: none; /* Add this - allows clicks to pass through when hidden */
-}
-
-.portfolio-card:hover .portfolio-overlay {
-    opacity: 1;
-    pointer-events: auto; /* Add this - enables clicks when visible */
-}
-
-.portfolio-overlay .btn {
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-    position: relative; /* Add this */
-    z-index: 11; /* Add this */
-}
-/* Mobile-First Portfolio Grid */
-.services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-    .services-grid {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    }
-}
-
-/* Portfolio Cards with Images */
+/* ===== PORTFOLIO CARDS ===== */
 .portfolio-card {
     padding: 0;
     overflow: hidden;
     text-align: left;
     background: var(--card-bg);
-    border-radius: 10px;
-    box-shadow: var(--shadow);
+    border-radius: 15px;
+    box-shadow: var(--shadow-blue);
     transition: transform 0.3s, box-shadow 0.3s;
     border: 1px solid rgba(74, 158, 255, 0.1);
     width: 100%;
@@ -1181,8 +1141,8 @@ a, button, .btn {
 
 .portfolio-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 30px rgba(74, 158, 255, 0.2);
-    border-color: rgba(74, 158, 255, 0.3);
+    box-shadow: 0 8px 30px rgba(74, 158, 255, 0.25), 0 8px 30px rgba(212, 165, 116, 0.15);
+    border-color: rgba(74, 158, 255, 0.2);
 }
 
 .portfolio-image {
@@ -1249,7 +1209,7 @@ a, button, .btn {
 .portfolio-category {
     display: inline-block;
     background: rgba(74, 158, 255, 0.2);
-    color: var(--primary-color);
+    color: var(--blue-primary);
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 11px;
@@ -1262,8 +1222,9 @@ a, button, .btn {
 .portfolio-content h3 {
     font-size: 20px;
     margin-bottom: 10px;
-    color: var(--text-white);
+    color: var(--primary-color);           /* Champagne Gold */
     line-height: 1.3;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .portfolio-content p {
@@ -1280,15 +1241,14 @@ a, button, .btn {
 }
 
 .portfolio-tags span {
-    background: rgba(74, 158, 255, 0.1);
+    background: rgba(156, 175, 136, 0.1);
     padding: 4px 10px;
     border-radius: 5px;
     font-size: 11px;
-    color: var(--text-gray);
-    border: 1px solid rgba(74, 158, 255, 0.2);
+    color: var(--accent-color);            /* Sage Green */
+    border: 1px solid rgba(156, 175, 136, 0.2);
 }
 
-/* Placeholder styling */
 .portfolio-placeholder {
     width: 100%;
     height: 100%;
@@ -1316,34 +1276,34 @@ a, button, .btn {
     .services-overview {
         padding: 60px 15px;
     }
-    
+
     .portfolio-image {
         height: 180px;
     }
-    
+
     .portfolio-content {
         padding: 20px;
     }
-    
+
     .portfolio-content h3 {
         font-size: 18px;
     }
-    
+
     .portfolio-content p {
         font-size: 13px;
     }
-    
+
     .portfolio-tags span {
         font-size: 10px;
         padding: 3px 8px;
     }
-    
+
     .portfolio-overlay {
         opacity: 1;
         background: rgba(10, 22, 40, 0.7);
         pointer-events: auto;
     }
-    
+
     .portfolio-overlay .btn {
         transform: translateY(0);
         font-size: 13px;
@@ -1355,15 +1315,15 @@ a, button, .btn {
     .portfolio-image {
         height: 160px;
     }
-    
+
     .portfolio-content {
         padding: 15px;
     }
-    
+
     .portfolio-content h3 {
         font-size: 16px;
     }
-    
+
     .portfolio-category {
         font-size: 10px;
         padding: 3px 10px;
@@ -1389,99 +1349,7 @@ body {
     }
 }
 
-/* WhatsApp Button Mobile */
-.whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25D366;
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-    z-index: 9999;
-    transition: all 0.3s ease;
-    animation: pulse-whatsapp 2s infinite;
-}
-
-.whatsapp-float:hover,
-.whatsapp-float:active {
-    transform: scale(1.1) translateY(-3px);
-    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
-}
-
-@keyframes pulse-whatsapp {
-    0% {
-        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-    }
-    50% {
-        box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8);
-    }
-    100% {
-        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-    }
-}
-
-.whatsapp-tooltip {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    background: var(--card-bg);
-    color: var(--text-white);
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 12px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 9998;
-    border: 1px solid rgba(37, 211, 102, 0.3);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.whatsapp-tooltip::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    right: 18px;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid var(--card-bg);
-}
-
-.whatsapp-float:hover + .whatsapp-tooltip,
-.whatsapp-tooltip:hover {
-    opacity: 1;
-    visibility: visible;
-}
-
-@media (min-width: 769px) {
-    .whatsapp-float {
-        width: 60px;
-        height: 60px;
-        font-size: 30px;
-        bottom: 30px;
-        right: 30px;
-    }
-    
-    .whatsapp-tooltip {
-        bottom: 100px;
-        right: 30px;
-        font-size: 14px;
-        padding: 10px 15px;
-    }
-    
-    .whatsapp-tooltip::after {
-        right: 20px;
-        bottom: -8px;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-top: 8px solid var(--card-bg);
-    }
+/* Elegant underline animation for links */
+a:not(.btn):not(.nav-cta) {
+    position: relative;
 }

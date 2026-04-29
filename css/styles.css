@@ -198,7 +198,7 @@ a, button, .btn {
     min-height: 600px;
 }
 
-.hero::before {
+.hero:before {
     content: '';
     position: absolute;
     top: 0;

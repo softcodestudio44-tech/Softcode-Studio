@@ -3,45 +3,61 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  
+
   <!-- Homepage - Highest Priority -->
   <url>
     <loc>https://softcode-studio.vercel.app/</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
   <!-- Services Page -->
   <url>
     <loc>https://softcode-studio.vercel.app/services.html</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-  
+
   <!-- Portfolio Page -->
   <url>
     <loc>https://softcode-studio.vercel.app/portfolio.html</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
+
   <!-- About Page -->
   <url>
     <loc>https://softcode-studio.vercel.app/about.html</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <!-- Contact Page -->
   <url>
     <loc>https://softcode-studio.vercel.app/contact.html</loc>
-    <lastmod>2026-02-26</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://softcode-studio.vercel.app/privacy-policy.html</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Terms of Service -->
+  <url>
+    <loc>https://softcode-studio.vercel.app/terms-of-service.html</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>

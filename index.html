@@ -82,6 +82,7 @@
             line-height: 1.7;
         }
 
+        /* ===== HERO BUTTONS ===== */
         .hero-buttons {
             display: flex;
             gap: 20px;
@@ -122,6 +123,7 @@
             border-color: #D4A574;
         }
 
+        /* ===== HERO STATS ===== */
         .hero-stats {
             display: flex;
             justify-content: center;
@@ -142,6 +144,7 @@
             letter-spacing: 1px;
         }
 
+        /* ===== SCROLL INDICATOR ===== */
         .scroll-indicator {
             position: absolute;
             bottom: 30px;
@@ -170,7 +173,56 @@
             50% { transform: translateX(-50%) translateY(-10px); }
         }
 
-/* ===== CONTENT SECTIONS ===== */
+        /* ===== LOADING SCREEN FOR 3D MODEL ===== */
+        #model-loader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #060d1a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #model-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        #model-loader img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        #model-loader p {
+            font-family: 'Orbitron', sans-serif;
+            color: #4A9EFF;
+            font-size: 14px;
+            letter-spacing: 3px;
+        }
+        .loader-bar {
+            width: 200px;
+            height: 2px;
+            background: rgba(74, 158, 255, 0.2);
+            border-radius: 2px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        .loader-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #4A9EFF, #D4A574);
+            transition: width 0.3s ease;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
         .featured-project {
             padding: 80px 20px;
             background: linear-gradient(135deg, #060d1a 0%, rgba(10, 22, 40, 0.95) 100%);
@@ -253,6 +305,7 @@
             backdrop-filter: blur(10px);
         }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .featured-container {
                 grid-template-columns: 1fr;
@@ -273,10 +326,18 @@
             }
         }
     </style>
-<base target="_blank">
 </head>
 <body>
-<!-- Three.js 3D Background Canvas -->
+    <!-- 3D Model Loading Screen -->
+    <div id="model-loader">
+        <img src="images/logo.png" alt="Softcode Logo">
+        <p>LOADING 3D HOLOGRAM</p>
+        <div class="loader-bar">
+            <div class="loader-bar-fill" id="loaderFill"></div>
+        </div>
+    </div>
+
+    <!-- Three.js 3D Background Canvas -->
     <div id="three-canvas-container"></div>
 
     <!-- Navigation Bar -->
@@ -386,7 +447,7 @@
                     <h3>Developer Tools</h3>
                     <p><strong>StackForge</strong> — CLI tools, code generators, and automation utilities that streamline developer workflows. Built for performance and extensibility.</p>
                     <div style="margin-top: 15px;">
-                        <a href="https://stackforge-steel.vercel.app" target="_blank" style="color: #4A9EFF; font-weight: 500;">Explore StackForge →</a>
+                        <a href="https://stackforge-steel.vercel.app" target="_blank" rel="noopener noreferrer" style="color: #4A9EFF; font-weight: 500;">Explore StackForge →</a>
                     </div>
                 </div>
                 <div class="service-card">
@@ -601,7 +662,7 @@
                     <ul class="contact-info">
                         <li>📞 <a href="tel:08056244696">08056244696</a></li>
                         <li>📧 <a href="mailto:softcodestudio44@gmail.com">softcodestudio44@gmail.com</a></li>
-                        <li>🌐 <a href="https://softcode-studio.vercel.app/">softcode-studio.vercel.app</a></li>
+                        <li>🌐 <a href="https://softcode-studio44portfolio.vercel.app/"><softcode-studio44portfolio></softcode-studio44portfolio>.vercel.app</a></li>
                         <li>📍 Lagos, Nigeria</li>
                     </ul>
                 </div>
@@ -645,39 +706,30 @@
 
     <script src="js/script.js"></script>
 
-    <!-- ===== THREE.JS + GLTFLoader via CDN (non-module for broader compatibility) ===== -->
+    <!-- ===== THREE.JS 3D SCENE: Looking Glass Hologram + Logo + Particles ===== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-    // Inline GLTFLoader (r128 compatible) - avoids CDN issues
-    (function(){
-        // Minimal GLTFLoader implementation wrapper
-        // We'll load the GLTFLoader script dynamically
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js';
-        script.onload = function() {
-            console.log('GLTFLoader loaded successfully');
-            init3D();
-        };
-        script.onerror = function() {
-            console.error('GLTFLoader failed to load from CDN');
-            // Try alternative source
-            const script2 = document.createElement('script');
-            script2.src = 'https://unpkg.com/three@0.128.0/examples/js/loaders/GLTFLoader.js';
-            script2.onload = function() {
-                console.log('GLTFLoader loaded from unpkg');
-                init3D();
-            };
-            script2.onerror = function() {
-                console.error('GLTFLoader failed from all sources');
-                document.getElementById('loaderText').textContent = '3D LOADER ERROR - CHECK CONSOLE';
-            };
-            document.head.appendChild(script2);
-        };
-        document.head.appendChild(script);
-    })();
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
-    function init3D() {
+    <script>
+    (function() {
         const container = document.getElementById('three-canvas-container');
+        const loaderScreen = document.getElementById('model-loader');
+        const loaderFill = document.getElementById('loaderFill');
+        let loaderHidden = false;
+
+        function hideLoader() {
+            if (!loaderHidden) {
+                loaderHidden = true;
+                loaderFill.style.width = '100%';
+                setTimeout(() => {
+                    loaderScreen.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Auto-hide loader after 5 seconds max (fallback)
+        setTimeout(hideLoader, 5000);
+
         // Scene
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x060d1a);
@@ -733,79 +785,49 @@
         plane.receiveShadow = true;
         scene.add(plane);
 
+        // Subtle grid
         const gridHelper = new THREE.GridHelper(30, 30, 0x1a2332, 0x0d1520);
         gridHelper.position.y = -1.99;
         scene.add(gridHelper);
 
-        // ===== LOAD GLB MODEL =====
+        // ===== LOAD LOOKING GLASS GLB MODEL =====
+        const loader = new THREE.GLTFLoader();
         let hologramModel = null;
 
-        // Check if GLTFLoader is available
-        if (typeof THREE.GLTFLoader === 'undefined') {
-            console.error('GLTFLoader not available!');
-            loaderText.textContent = 'GLTFLoader NOT FOUND';
-            loaderFill.style.width = '100%';
-            setTimeout(() => { loaderScreen.classList.add('hidden'); }, 1000);
-            // Still run animation loop for particles/logo
-            animate();
-            return;
-        }
-
-        const loader = new THREE.GLTFLoader();
-
-        // Try loading the model - it's a glTF folder, not a .glb file
-        console.log('Attempting to load models/looking-glass.glb/scene.gltf');
-
         loader.load(
-            'models/looking-glass.glb/scene.gltf',
+            'models/looking-glass.glb',
             function(gltf) {
-                console.log('SUCCESS: Model loaded!', gltf);
                 hologramModel = gltf.scene;
 
-                // Compute bounding box to center and scale properly
-                const box = new THREE.Box3().setFromObject(hologramModel);
-                const size = box.getSize(new THREE.Vector3());
-                const center = box.getCenter(new THREE.Vector3());
+                // Scale and position the model
+                hologramModel.scale.set(1.5, 1.5, 1.5);
+                hologramModel.position.set(0, -0.5, 0);
 
-                console.log('Model size:', size);
-                console.log('Model center:', center);
-
-                // Center the model
-                hologramModel.position.sub(center);
-
-                // Scale to fit nicely in view (max dimension ~3 units)
-                const maxDim = Math.max(size.x, size.y, size.z);
-                const scale = 3 / maxDim;
-                hologramModel.scale.set(scale, scale, scale);
-                hologramModel.position.y = 0;
-
-                // Enable shadows
+                // Enable shadows on all meshes
                 hologramModel.traverse(function(child) {
                     if (child.isMesh) {
                         child.castShadow = true;
                         child.receiveShadow = true;
+                        // Enhance emissive materials
                         if (child.material) {
                             child.material.envMapIntensity = 2;
-                            // Make sure materials are visible
-                            if (child.material.transparent && child.material.opacity < 0.1) {
-                                child.material.opacity = 0.8;
-                            }
                         }
                     }
                 });
 
                 scene.add(hologramModel);
-                console.log('Model added to scene');
+                hideLoader();
             },
             function(progress) {
+                // Update loader bar
                 if (progress.total > 0) {
                     const percent = (progress.loaded / progress.total) * 100;
-                    console.log('Loading progress:', percent.toFixed(1) + '%');
+                    loaderFill.style.width = percent + '%';
                 }
             },
             function(error) {
-                console.error('ERROR loading model:', error);
-                // Scene continues without model - particles/logo still work
+                console.error('Error loading GLB:', error);
+                hideLoader(); // Hide loader even on error so page is visible
             }
         );
 
@@ -828,6 +850,7 @@
         const logoMesh = new THREE.Mesh(logoGeometry, logoMaterial);
         logoGroup.add(logoMesh);
 
+        // Glow rings behind logo
         const ringGeo = new THREE.TorusGeometry(1.3, 0.02, 16, 100);
         const ringMat = new THREE.MeshBasicMaterial({
             color: 0x4A9EFF,
@@ -964,7 +987,7 @@
             // Hologram model animation
             if (hologramModel) {
                 hologramModel.rotation.y = t * 0.3;
-                hologramModel.position.y = Math.sin(t * 0.8) * 0.1;
+                hologramModel.position.y = -0.5 + Math.sin(t * 0.8) * 0.1;
             }
 
             // Logo animation
@@ -1002,7 +1025,7 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
-    }
+    })();
     </script>
 
     <script>

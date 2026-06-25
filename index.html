@@ -170,55 +170,7 @@
             50% { transform: translateX(-50%) translateY(-10px); }
         }
 
-        /* ===== LOADING SCREEN ===== */
-        #model-loader {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: #060d1a;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-        #model-loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        #model-loader img {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 20px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
-        }
-        #model-loader p {
-            font-family: 'Orbitron', sans-serif;
-            color: #4A9EFF;
-            font-size: 14px;
-            letter-spacing: 3px;
-        }
-        .loader-bar {
-            width: 200px;
-            height: 2px;
-            background: rgba(74, 158, 255, 0.2);
-            border-radius: 2px;
-            margin-top: 15px;
-            overflow: hidden;
-        }
-        .loader-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #4A9EFF, #D4A574);
-            transition: width 0.3s ease;
-        }
-
-        /* ===== CONTENT SECTIONS ===== */
+/* ===== CONTENT SECTIONS ===== */
         .featured-project {
             padding: 80px 20px;
             background: linear-gradient(135deg, #060d1a 0%, rgba(10, 22, 40, 0.95) 100%);
@@ -322,19 +274,9 @@
         }
     </style>
 <base target="_blank">
-<base target="_blank">
 </head>
 <body>
-    <!-- 3D Model Loading Screen -->
-    <div id="model-loader">
-        <img src="images/logo.png" alt="Softcode Logo">
-        <p id="loaderText">LOADING 3D HOLOGRAM</p>
-        <div class="loader-bar">
-            <div class="loader-bar-fill" id="loaderFill"></div>
-        </div>
-    </div>
-
-    <!-- Three.js 3D Background Canvas -->
+<!-- Three.js 3D Background Canvas -->
     <div id="three-canvas-container"></div>
 
     <!-- Navigation Bar -->
@@ -659,7 +601,7 @@
                     <ul class="contact-info">
                         <li>📞 <a href="tel:08056244696">08056244696</a></li>
                         <li>📧 <a href="mailto:softcodestudio44@gmail.com">softcodestudio44@gmail.com</a></li>
-                        <li>🌐 <a href="https://softcode-studio44portfolio.vercel.app/">softcode-studio44portfolio.vercel.app</a></li>
+                        <li>🌐 <a href="https://softcode-studio.vercel.app/">softcode-studio.vercel.app</a></li>
                         <li>📍 Lagos, Nigeria</li>
                     </ul>
                 </div>
@@ -736,10 +678,6 @@
 
     function init3D() {
         const container = document.getElementById('three-canvas-container');
-        const loaderScreen = document.getElementById('model-loader');
-        const loaderText = document.getElementById('loaderText');
-        const loaderFill = document.getElementById('loaderFill');
-
         // Scene
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x060d1a);
@@ -858,32 +796,16 @@
 
                 scene.add(hologramModel);
                 console.log('Model added to scene');
-
-                loaderFill.style.width = '100%';
-                setTimeout(() => {
-                    loaderScreen.classList.add('hidden');
-                }, 500);
             },
             function(progress) {
                 if (progress.total > 0) {
                     const percent = (progress.loaded / progress.total) * 100;
-                    loaderFill.style.width = percent + '%';
                     console.log('Loading progress:', percent.toFixed(1) + '%');
-                } else {
-                    loaderFill.style.width = '50%';
                 }
             },
             function(error) {
-                console.error('ERROR loading GLB:', error);
-                loaderText.textContent = 'MODEL LOAD FAILED - CHECK CONSOLE FOR DETAILS';
-                loaderText.style.color = '#ff6b6b';
-                loaderFill.style.width = '100%';
-                loaderFill.style.background = '#ff6b6b';
-
-                // Show error for 2 seconds then hide
-                setTimeout(() => {
-                    loaderScreen.classList.add('hidden');
-                }, 2000);
+                console.error('ERROR loading model:', error);
+                // Scene continues without model - particles/logo still work
             }
         );
 
